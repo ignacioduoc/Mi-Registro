@@ -1,15 +1,19 @@
 package com.example.mi_registro.ui.theme
 
 import android.app.Activity
+import android.graphics.drawable.shapes.Shape
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 
 private val EsquemaOscuro = darkColorScheme(
     primary = PrimarioClaro ,
@@ -41,6 +45,14 @@ private val EsquemaBlanco = lightColorScheme(
     surface = SuperFicieClara,
     onSurface = TextoOscuro
 )
+//border-radius
+private val Formas = Shapes(
+    small = RoundedCornerShape(8.dp) ,
+    medium = RoundedCornerShape(12.dp),
+    large = RoundedCornerShape(20.dp)
+)
+
+
 
 @Composable
 fun MiregistroTheme(
@@ -55,13 +67,14 @@ fun MiregistroTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> EsquemaOscuro
+        else -> EsquemaBlanco
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = Tipografia,
+        shapes = Formas,
         content = content
     )
 }
